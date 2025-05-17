@@ -1,2 +1,3 @@
 # onlinebookstore
- The Online Bookstore Database is designed to manage book inventory, customer purchases, and supplier information. The system allows store owners to track stock levels, monitor sales, manage customer interactions, and streamline supplier orders. 
+ The Online Bookstore Database is designed to manage book inventory, customer purchases, and supplier information. The system allows store owners to track stock levels, monitor sales, manage customer interactions, and streamline supplier orders.
+ Customers benefit from a seamless purchasing process, while the backend supports real-time inventory updates, sales tracking, and analytics. The database will manage details about books, authors, suppliers, and customers. It will track sales, manage inventory levels in real-time, and allow owners to analyze purchasing trends. This system improves customer experience by ensuring accurate stock information and a smooth transaction process.
