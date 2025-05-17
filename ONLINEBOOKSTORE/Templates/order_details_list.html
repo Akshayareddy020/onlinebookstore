@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Order Details{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Order Details</h1>
+    <a href="/add_order_detail" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Order Detail
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-header bg-white">
+        <div class="row">
+            <div class="col-md-8">
+                <input type="text" id="detailSearch" class="form-control" placeholder="Search order details...">
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" id="filterByOrder">
+                    <option value="all">All Orders</option>
+                    <!-- In a real application, you would populate this from your database -->
+                    <option value="1">Order #1</option>
+                    <option value="2">Order #2</option>
+                    <option value="3">Order #3</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Detail ID</th>
+                        <th>Order ID</th>
+                        <th>Book ID</th>
+                        <th>Book Title</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detail in details %}
+                    <tr>
+                        <td>{{ detail[0] }}</td>
+                        <td>{{ detail[1] }}</td>
+                        <td>{{ detail[2] }}</td>
+                        <td><!-- This would need to be fetched from books table --></td>
+                        <td>{{ detail[3] }}</td>
+                        <td><!-- This would need to be fetched from books table --></td>
+                        <td><!-- This would need to be calculated --></td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Search functionality
+        $("#detailSearch").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("tbody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        
+        // Filter by order ID
+        $("#filterByOrder").on("change", function() {
+            var value = $(this).val();
+            if (value === "all") {
+                $("tbody tr").show();
+            } else {
+                $("tbody tr").hide();
+                $("tbody tr td:nth-child(2)").filter(function() {
+                    return $(this).text() === value;
+                }).parent().show();
+            }
+        });
+    });
+</script>
+{% endblock %}

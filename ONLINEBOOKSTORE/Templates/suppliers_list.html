@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Suppliers{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Suppliers</h1>
+    <a href="/add_supplier" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Supplier
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-header bg-white">
+        <div class="row">
+            <div class="col-md-8">
+                <input type="text" id="supplierSearch" class="form-control" placeholder="Search suppliers...">
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" id="sortSuppliers">
+                    <option value="name">Sort by Name</option>
+                    <option value="date">Sort by Date</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>Order Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for supplier in suppliers %}
+                    <tr>
+                        <td>{{ supplier[0] }}</td>
+                        <td>{{ supplier[1] }}</td>
+                        <td>{{ supplier[2] }}</td>
+                        <td>{{ supplier[3] }}</td>
+                        <td>{{ supplier[4] }}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Search functionality
+        $("#supplierSearch").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("tbody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+{% endblock %}

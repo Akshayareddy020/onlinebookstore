@@ -1,0 +1,91 @@
+<input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="genre_id" class="form-label">Genre</label>
+                    <select class="form-select" id="genre_id" name="genre_id" required>
+                        <option value="" selected disabled>Select genre</option>
+                        <option value="1">Fiction</option>
+                        <option value="2">Non-Fiction</option>
+                        <option value="3">Science Fiction</option>
+                        <option value="4">Mystery</option>
+                        <option value="5">Romance</option>
+                        <option value="6">Thriller</option>
+                        <option value="7">Biography</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="author" class="form-label">Author</label>
+                    <input type="text" class="form-control" id="author" name="author" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="supplier_id" class="form-label">Supplier</label>
+                    <select class="form-select" id="supplier_id" name="supplier_id" required>
+                        <option value="" selected disabled>Select supplier</option>
+                        <option value="1">Penguin Random House</option>
+                        <option value="2">HarperCollins</option>
+                        <option value="3">Simon & Schuster</option>
+                        <option value="4">Macmillan Publishers</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="price" class="form-label">Price ($)</label>
+                    <input type="number" class="form-control" id="price" name="price" step="0.01" min="0" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="stock_quantity" class="form-label">Stock Quantity</label>
+                    <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" min="0" required>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description (Optional)</label>
+                <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="reset" class="btn btn-outline-secondary">Clear Form</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Add Book
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Form validation
+        $('form').on('submit', function(event) {
+            let isValid = true;
+            
+            // Title validation
+            if ($('#title').val().trim() === '') {
+                $('#title').addClass('is-invalid');
+                isValid = false;
+            } else {
+                $('#title').removeClass('is-invalid');
+            }
+            
+            // Price validation
+            if ($('#price').val() <= 0 || $('#price').val() === '') {
+                $('#price').addClass('is-invalid');
+                isValid = false;
+            } else {
+                $('#price').removeClass('is-invalid');
+            }
+            
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+{% endblock %}

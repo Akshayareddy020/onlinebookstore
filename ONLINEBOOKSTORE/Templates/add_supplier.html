@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Add Supplier{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Add New Supplier</h1>
+    <a href="/suppliers" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Suppliers
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form action="/add_supplier" method="POST">
+            <div class="mb-3">
+                <label for="Name" class="form-label">Supplier Name</label>
+                <input type="text" class="form-control" id="Name" name="Name" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="PhoneNumber" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="PhoneNumber" name="PhoneNumber" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="Address" class="form-label">Address</label>
+                <textarea class="form-control" id="Address" name="Address" rows="3" required></textarea>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="reset" class="btn btn-outline-secondary">Clear Form</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Add Supplier
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

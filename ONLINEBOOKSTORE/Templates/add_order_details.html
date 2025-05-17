@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Add Order Detail{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Add Order Detail</h1>
+    <a href="/order_details" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Order Details
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form action="/add_order_detail" method="POST">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="OrderDetailID" class="form-label">Order Detail ID</label>
+                    <input type="number" class="form-control" id="OrderDetailID" name="OrderDetailID" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="OrderID" class="form-label">Order ID</label>
+                    <select class="form-select" id="OrderID" name="OrderID" required>
+                        <option value="" selected disabled>Select order ID</option>
+                        <!-- In a real application, you would populate this from your database -->
+                        <option value="1">Order #1</option>
+                        <option value="2">Order #2</option>
+                        <option value="3">Order #3</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <label for="BookID" class="form-label">Book</label>
+                    <select class="form-select" id="BookID" name="BookID" required>
+                        <option value="" selected disabled>Select book</option>
+                        <!-- In a real application, you would populate this from your database -->
+                        <option value="1">Harry Potter and the Philosopher's Stone</option>
+                        <option value="2">The Great Gatsby</option>
+                        <option value="3">To Kill a Mockingbird</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="Quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="Quantity" name="Quantity" min="1" required>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="updateStock">
+                    <label class="form-check-label" for="updateStock">
+                        Automatically update book stock quantity
+                    </label>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add to Order
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Form validation
+        $('form').on('submit', function(event) {
+            let isValid = true;
+            
+            if ($('#OrderID').val() === null) {
+                $('#OrderID').addClass('is-invalid');
+                isValid = false;
+            } else {
+                $('#OrderID').removeClass('is-invalid');
+            }
+            
+            if ($('#BookID').val() === null) {
+                $('#BookID').addClass('is-invalid');
+                isValid = false;
+            } else {
+                $('#BookID').removeClass('is-invalid');
+            }
+            
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+{% endblock %}
