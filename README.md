@@ -5,23 +5,23 @@
 ONLINEBOOKSTORE
 ├── app.py
 ├── templates/
-add_book.html
-add_customer.html
-add_order.html
-add_order_details.html
-add_supplier.html
-base.html
-books_list.html
-customer_list.html
-index.html
-order_details_list.html
-orders_list.html
-suppliers_list.html
+----add_book.html
+---add_customer.html
+----add_order.html
+----add_order_details.html
+----add_supplier.html
+---base.html
+---books_list.html
+---customer_list.html
+---index.html
+---order_details_list.html
+---orders_list.html
+----suppliers_list.html
 
 Running the project:
-Clone the project to local directory
-in terminal run python app.py 
-run all tenplates using mkdir templates 
-http://127.0.0.1:5000/ your project is running here .
-Use the other routes (e.g. /add_book) to access those pages.
+1.Clone the project to local directory
+2.in terminal run python app.py 
+3.run all tenplates using mkdir templates 
+4.http://127.0.0.1:5000/ your project is running here .
+5. Use the other routes (e.g. /add_book) to access those pages.
 
